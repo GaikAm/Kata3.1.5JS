@@ -42,8 +42,7 @@ public class UserDaoImp implements UserDao {
             if (user.getRoles() == null) {
                 user.setRoles(findById(user.getId()).getRoles());
             }
-            //Использовать, если объект НЕ отслеживается, но у него есть id. В БД найдется объект с таким id и изменится
-            //соответственно этому объекту
+
             em.merge(user);
         }
         em.flush();
@@ -74,8 +73,6 @@ public class UserDaoImp implements UserDao {
         User user = new User(password, firstName, lastName, age, email, roles);
         user.setId(id);
 
-        //Использовать, если объект НЕ отслеживается, но у него есть id. В БД найдется объект с таким id и изменится
-        //соответсенно этому объекту
         em.merge(user);
 
         em.flush();
