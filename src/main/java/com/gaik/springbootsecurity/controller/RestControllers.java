@@ -30,8 +30,12 @@ public class RestControllers {
 
     @GetMapping("/admin")
     public List<User> showAllUsers() {
-        List<User> userList = userServiceImp.getAllUsers();
-        return userList;
+        return userServiceImp.getAllUsers();
+    }
+
+    @GetMapping("/admin/{id}")
+    public User getUserById(@PathVariable long id) {
+        return userServiceImp.findById(id);
     }
 
     @PostMapping("/admin")

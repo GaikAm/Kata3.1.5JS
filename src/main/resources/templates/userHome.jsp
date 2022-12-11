@@ -25,7 +25,8 @@
         <div class="col-2 h-100">
             <br>
             <ul id="navPanel" class="nav flex-column nav-pills" aria-orientation="vertical">
-
+                <div id="AdminNav"></div>
+                <div id="UserNav"></div>
             </ul>
         </div>
         <div class="col-10 bg-light px-md-5 h-100 d-inline-block">
@@ -63,20 +64,19 @@
 <script>
     fetch("/api/user").then(response => response.json()
     ).then(thisUser => {
-        let htmlPanel = "";
         let htmlRoles = "";
         let htmlRoleNavbar = "";
         let roleThisUser = thisUser.roles;
         for (let i = 0; i < roleThisUser.length; i++) {
             if (roleThisUser[i].name == "ROLE_ADMIN") {
-                htmlPanel = htmlPanel + `
+                document.querySelector("#AdminNav").innerHTML = `
                     <li class="nav-item">
                         <a class="nav-link" href="/admin">Admin</a>
                     </li>`;
             }
 
             if (roleThisUser[i].name == "ROLE_USER") {
-                htmlPanel = htmlPanel + `
+                document.querySelector("#UserNav").innerHTML = `
                     <li class="nav-item">
                         <a class="nav-link active" href="/user">User</a>
                     </li>`;
@@ -84,7 +84,6 @@
             htmlRoles = htmlRoles + "<div>" + roleThisUser[i].name + "</div>";
             htmlRoleNavbar += `${roleThisUser[i].name} `;
         }
-        document.querySelector("#navPanel").innerHTML = htmlPanel;
         document.querySelector("#headNavbar").innerHTML = `${thisUser.email}`;
         document.querySelector("#roleNavbar").innerHTML = `${htmlRoleNavbar}`;
 
