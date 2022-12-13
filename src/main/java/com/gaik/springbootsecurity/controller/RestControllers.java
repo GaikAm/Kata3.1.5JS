@@ -39,7 +39,7 @@ public class RestControllers {
     }
 
     @PostMapping("/admin")
-    public User addUser(@ModelAttribute("newUser") User newUser,
+    public User addUser(@ModelAttribute User newUser,
                         @RequestParam(name = "roleNewUser", required = false) List<String> roleNewUser) {
         Set<Role> roleSet = new HashSet<>();
         System.out.println(roleNewUser);

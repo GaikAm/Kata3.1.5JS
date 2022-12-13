@@ -81,8 +81,8 @@
                         <a class="nav-link active" href="/user">User</a>
                     </li>`;
             }
-            htmlRoles = htmlRoles + "<div>" + roleThisUser[i].name + "</div>";
-            htmlRoleNavbar += `${roleThisUser[i].name} `;
+            htmlRoles = htmlRoles + "<div>" + roleThisUser[i].name.slice(5) + "</div>";
+            htmlRoleNavbar += `${roleThisUser[i].name.slice(5)} `;
         }
         document.querySelector("#headNavbar").innerHTML = `${thisUser.email}`;
         document.querySelector("#roleNavbar").innerHTML = `${htmlRoleNavbar}`;

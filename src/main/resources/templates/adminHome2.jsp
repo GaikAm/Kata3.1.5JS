@@ -88,7 +88,7 @@
         }).then(data2 => {
             roles = data2;
             for (let i = 0; i < roles.length; i++) {
-                htmlAllRoles = htmlAllRoles + `<option value="${roles[i].name}">${roles[i].name}</option>`;
+                htmlAllRoles = htmlAllRoles + `<option value="${roles[i].name}">${roles[i].name.slice(5)}</option>`;
             }
 
             createPanel();
@@ -96,7 +96,6 @@
             createNewUserForm();
         });
     }
-
 
     function getEditFormModal(dataId) {
         fetch('/api/admin/' + dataId
@@ -241,7 +240,7 @@
     function createNewUserInTable(data) {
         htmlRoles = "";
         for (let i = 0; i < data.roles.length; i++) {
-            htmlRoles = htmlRoles + "<div>" + data.roles[i].name + "</div>";
+            htmlRoles = htmlRoles + "<div>" + data.roles[i].name.slice(5) + "</div>";
         }
         if (!document.querySelector(`.subBody${data.id}`)) {
             document.querySelector(".body").innerHTML += `<tr class='subBody${data.id}'></tr>`;
@@ -342,7 +341,7 @@
                     </li>`;
                 }
 
-                htmlRoleNavbar += `${roleThisUser[i].name} `;
+                htmlRoleNavbar += `${roleThisUser[i].name.slice(5)} `;
             }
             document.querySelector("#headNavbar").innerHTML = `${thisUser.email}`;
             document.querySelector("#roleNavbar").innerHTML = `${htmlRoleNavbar}`;
